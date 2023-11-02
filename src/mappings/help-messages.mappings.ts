@@ -1,0 +1,18 @@
+export const httpErrorMessages = {
+  400: 'Oops, it looks like we misunderstood your request. Please check your input and try again.',
+  401: "You don't seem to have the necessary permissions for this action. Please make sure you're authorized.",
+  403: "Sorry, you're not allowed to access this resource. Please check your credentials or contact your administrator if you think this is a mistake.",
+  404: "We're sorry, but we couldn't find the resource you're looking for. Please make sure you entered the correct information.",
+  405: "Sorry, the action you're trying to perform isn't allowed. Please check your method and try again.",
+  406: 'The resource you requested cannot generate the response you desire. Please modify your request.',
+  408: 'Your request has taken too long to process. Please try again later.',
+  409: 'We encountered a conflict with your request. Please try again or change your request.',
+  415: "The media type of your request isn't supported. Please check and try again with a valid format.",
+  429: "You've sent too many requests in a short period. Please slow down and try again later.",
+  451: "We're sorry, but the resource you're trying to access is not available for legal reasons.",
+  500: "We're sorry, something went wrong on our end. Our team is working on the issue, please try again later.",
+  502: "There's a problem with our servers. Please try again later.",
+  503: "Our apologies, but the service is currently unavailable. We're doing our best to fix this as soon as possible. Please try again later.",
+  504: 'Our server took too long to respond. Please try again later.',
+  507: "We're running low on storage space. Please try again after some time.",
+};
