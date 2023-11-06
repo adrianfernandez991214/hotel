@@ -19,10 +19,15 @@ export class platilloPatchDTO {
   @IsNotEmpty()
   @IsOptional()
   @IsString()
-  foto: string;
+  foto?: string;
 
   @IsNotEmpty()
   @IsOptional()
   @IsString()
-  video: string;
+  video?: string;
+
+  @IsNotEmpty()
+  @IsOptional()
+  @IsString()
+  audio?: string;
 }

@@ -11,6 +11,7 @@ import {
   UploadedFile,
   UseInterceptors,
   Res,
+  BadRequestException,
   //UseGuards,
 } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
@@ -25,12 +26,12 @@ import { isObjectId } from 'src/common/functions/validators';
 import { of } from 'rxjs';
 
 const fileFilter = (req, file, cb) => {
-  const allowedExtensions = ['.avi', '.mp4', '.jpg', '.png'];
+  const allowedExtensions = ['.avi', '.mp4', '.jpg', '.png', '.mp3'];
   const ext = extname(file.originalname).toLowerCase();
   if (allowedExtensions.includes(ext)) {
     cb(null, true);
   } else {
-    cb(new Error('Tipo de archivo no admitido'));
+    cb(new BadRequestException('Tipo de archivo no admitido'));
   }
 };
 
@@ -88,11 +89,14 @@ export class PatilloController {
     @Param('id') id: string,
   ) {
     let response;
-    const allowedExtensions = ['.jpg', '.png'];
     const ext = extname(file.originalname).toLowerCase();
-    if (allowedExtensions.includes(ext)) {
+    if (['.jpg', '.png'].includes(ext)) {
       response = await this.platilloService.patch(isObjectId(id), {
         foto: file.filename,
+      });
+    } else if (['.mp3'].includes(ext)) {
+      response = await this.platilloService.patch(isObjectId(id), {
+        audio: file.filename,
       });
     } else {
       response = await this.platilloService.patch(isObjectId(id), {
@@ -108,7 +112,7 @@ export class PatilloController {
   }
 
   @Get('file/:nombreArchivo')
-  descargarArchivo(
+  downloadFile(
     @Param('nombreArchivo') nombreArchivo: string,
     @Res() res: Response,
   ) {

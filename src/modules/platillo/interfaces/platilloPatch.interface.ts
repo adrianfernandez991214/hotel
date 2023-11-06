@@ -4,4 +4,5 @@ export interface IPlatilloPatch {
   ingredientes?: string;
   foto?: string;
   video?: string;
+  audio?: string;
 }

@@ -20,6 +20,9 @@ export class Platillo {
   @Prop({ type: String })
   video: string;
 
+  @Prop({ type: String })
+  audio: string;
+
   @Prop({ type: Date, default: null })
   deletedAt: Date;
 }

@@ -11,6 +11,7 @@ import {
   UseInterceptors,
   UploadedFile,
   Res,
+  BadRequestException,
   //UseGuards,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -30,7 +31,7 @@ const fileFilter = (req, file, cb) => {
   if (allowedExtensions.includes(ext)) {
     cb(null, true);
   } else {
-    cb(new Error('Tipo de archivo no admitido'));
+    cb(new BadRequestException('Tipo de archivo no admitido'));
   }
 };
 
@@ -108,7 +109,7 @@ export class PersonalidadController {
   }
 
   @Get('file/:nombreArchivo')
-  descargarArchivo(
+  downloadFile(
     @Param('nombreArchivo') nombreArchivo: string,
     @Res() res: Response,
   ) {
